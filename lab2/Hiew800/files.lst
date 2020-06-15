@@ -1,0 +1,19 @@
+;
+;       Hiew release VII files list
+;
+
+      FILES.LST - This file !
+    LICENSE.TXT - License Information
+   REGISTER.TXT - Registration info
+    FILE_ID.DIZ - General info
+
+      HIEW8.INI - INI file
+      HIEW8.HLP - Help file (press F1 to view)
+      HIEW7.ORD - Ordinal names
+       HIEW.VMM - VMM/VxD call names for LE modules
+       HIEW.XLT - Translation tables
+    HIEW_RU.TXT - Russian README
+    HIEW_EN.TXT - English README
+        SEN.ASC - Public PGP key
+
+             *******

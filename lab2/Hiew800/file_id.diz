@@ -1,0 +1,27 @@
+           HIEW release VIII
+----------------------------------------
+* view end edit files of any length
+  in text, hex, decode modes
+* x86-64 disassembler & assembler
+* physical & logical drive view & edit
+* support for NE, LE, LX, PE/PE32+ and
+  little-endian ELF/ELF64 executable formats
+* support for Netware Loadable Modules
+  like NLM, DSK, LAN,...
+* following direct call/jmp instructions
+  in any executable file with one touch
+* pattern search in disassembler
+* built-in simple 64bit decrypt/crypt system
+* built-in powerful 64bit calculator
+* operations with blocks of arbitrary
+  length: read, write, fill, copy, move,
+  insert, delete, crypt
+* multifile search and replace
+* editing the NewExecutable files header
+* keyboard macros
+* unicode support
+* Hiew Extrenal Module (HEM) support
+* ArmV6 disassembler
+----------------------------------------
+      (c)SEN Kemerovo 1991-2009
+----------------------------------------

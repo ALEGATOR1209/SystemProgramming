@@ -1,0 +1,21 @@
+ 	DEMO version of Hiew release VII.
+
+( http://www.hiew.ru/files/hiew32demo.zip )
+
+- no timelimit
+- no nag-screen
+
+There is fully-functionally 32bit windows application with few exceptions:
+
+- file size is limited to 150000 bytes 
+- no logical & physical drive support
+- no ini-file processing 
+- no ordinal names 
+- no loading/storing keyboard macros in file 
+- 32bit crypt 
+- no loading/storing crypt scripts in file 
+- no progress bar
+- no unicode support
+- no Hiew External Module (HEM) support
+- no 64bit dis/assembler
+- no ARM disassembler

@@ -1,0 +1,21 @@
+ DEMO version of Hiew release VIII
+
+- no nag-screen
+- no filesize limit 
+
+There is fully-functionally 32bit windows application with few exceptions:
+
+- support PE 32bit files only
+- no assembler
+- no 64bit disassembler
+- no ARM disassembler
+- no logical & physical drive support
+- no crypt
+- no ini-file
+- no sav-file
+- no keyboard macros
+- no store/load names
+- no Hiew External Module (HEM) support
+- no header/section edit
+
+For details of registration visit  http://www.hiew.ru/

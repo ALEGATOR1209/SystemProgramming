@@ -1,0 +1,45 @@
+(english text follows below)
+
+                   Licensing Information
+                   ---------------------
+
+Эксклюзивное     авторское      право      на      программу
+принадлежит    Сусликову    Евгению    Николаевичу.
+
+Запрещается    продажа     и     получение    прибыли    при
+использовании программы без письменного разрешения автора.
+
+Запрещается   массовое    тиражирование   без    письменного
+согласия автора.
+
+Запрещается   передача   другим   лицам   приватных  файлов,
+полученных     от    автора    (таких   как  .key/.ke8, .cah
+и   пр.),  а  также  производных  от этих  файлов (таких как
+hiew32.exe)
+
+HIEW   распространяется   "как   есть"  ("as  is").    Автор
+не несет ответственность  за любые результаты  использования
+или неиспользования этой  программы и сопутствующих  утилит.
+Автор только гарантирует, что  HIEW и сопутствующие  утилиты
+будут занимать дисковое пространство.
+
+           ======================================
+
+The   License   is  personal  to you. It  is  prohibited  to
+distribute   .cah  or .key/.ke8  files received from author,
+as   well   as .exe  files  obtained with  the help of these
+.cah files.
+
+Commercial  distribution  and/or use without written consent
+of Eugene Suslikov are prohibited.
+
+HIEW  is  provided  "as  is",  without  warranty,  expressed
+or implied, of any kind. Author can only guarantee that HIEW
+and included tools would occupy your diskspace.
+
+In  no  event  will  the  author  be liable for any damages,
+including  lost  profits,  lost  savings or other incidental
+or  consequential  damages  arised  from use of this program
+or inability to use this program.
+
+           ========= End of license.txt =========

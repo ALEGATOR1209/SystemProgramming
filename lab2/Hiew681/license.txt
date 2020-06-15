@@ -1,0 +1,57 @@
+(english text see below)
+
+                   Licensing Information
+                   ---------------------
+
+        Эксклюзивное   авторское    право    на    программу
+принадлежит   Сусликову   Евгению   Николаевичу.    HIEW   и
+сопутствующие утилиты разрешается копировать и  использовать
+только в  некоммерческих  целях  при  условии  не  изменения
+оригинального архива.
+
+        HIEW - шароварный продукт.   Вы можете  использовать
+нерегистрированную копию  только 30  дней для  ознакомления.
+Затем ее надо зарегистрировать и поддержать автора если  она
+Вам понравилась или стереть в противном случае.
+
+        Запрещается  продажа   и   получение   прибыли   при
+использовании программы без письменного разрешения автора.
+        Запрещается массовое  тиражирование без  письменного
+согласия автора.
+
+        HIEW распространяется "как  есть" ("as is").   Автор
+не несет ответственность  за любые результаты  использования
+или неиспользования этой  программы и сопутствующих  утилит.
+Автор только гарантирует, что  HIEW и сопутствующие  утилиты
+будут занимать дисковое пространство.
+
+           ======================================
+
+        This is  NOT  public  domain  or  freeware.   Author
+grants you a TEMPORARY license  to  try  this  software  for
+EVALUATION purposes ONLY !  You may use this package for  an
+evaluation time of 30  days.  After  this time  you have  to
+register HIEW or stop using it ! Any other or further use of
+this software is strictly forbidden and may result in  legal
+action!
+
+        Noncommercial distribution and/or  use is  permitted
+under the following  terms:  You  may  copy  and  distribute
+verbatim copies of the HIEW executable  code and  associated
+files; provide unmodified copies  of  the  documentation  as
+provided with the program.
+
+        Commercial  distribution   and/or   use   prohibited
+without written consent of Eugene Suslikov.
+
+        HIEW is provided "as  is", without  warranty of  any
+kind,  neither  expressed  nor  implied.   The  author  only
+guarantees  that  HIEW   and  the   included  tools   occupy
+diskspace.
+
+        In no event will the author be liable to you for any
+damages, including  lost  profits,  lost  savings  or  other
+incidental or consequential damages  arising out of the  use
+of this program or the inability to use this program.
+
+           ========= End of license.txt =========
