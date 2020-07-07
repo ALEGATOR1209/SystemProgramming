@@ -1,6 +1,6 @@
 .386
 INCLUDE \masm32\include\masm32rt.inc
-INCLUDE 4-8-IP84-Ковалишин.inc
+INCLUDE lab4.inc
 
 IDC_EDIT EQU 1001
 IDC_TEXT EQU 1002

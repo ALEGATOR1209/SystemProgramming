@@ -1,157 +1,130 @@
-include \masm32\include\masm32rt.inc  
+INCLUDE \masm32\include\masm32rt.inc
 
+; (4 * b / c - 1) / (12 * СЃ + Р° - b)
+calc MACRO a, b, d
+    MOV AL, 12  ; preparing multiplication
+    IMUL d      ; 12 * c         -> AL
+    ADD AL, a   ; 12 * c + a     -> AL
+    SUB AL, b   ; 12 * c + a - d -> AL
+    MOV res, AL ; 12 * c + a - d -> res
+
+    MOV AL, 4   ; preparing multiplication
+    IMUL b      ; 4 * b         -> AL
+    IDIV d      ; 4 * b / c     -> AL
+    DEC AL      ; 4 * b / c - 1 -> AL, AH = 0
+
+    IDIV res    ; (4 * b / c - 1) / (12 * СЃ + Р° - b) -> AL, AH = 0
+ENDM
+
+finalCalc MACRO n, buffer
+    LOCAL odd
+    LOCAL fin
+
+    MOV BL, n
+    SAR BL, 1
+    JB odd
+
+    INVOKE wsprintf, addr buffer, addr msg_even_format, BL
+    JMP fin
+
+    odd:
+    MOV AL, 5
+    IMUL n
+    INVOKE wsprintf, addr buffer, addr msg_odd_format, AL
+    
+    fin:
+ENDM
+
+printNum MACRO n, buffer
+    LOCAL pos
+    LOCAL fin
+    MOV     CL, n
+    TEST    CL, CL
+    JNS     pos
+
+    NEG CL
+    INVOKE wsprintf, addr buffer, addr msg_neg_format, CL
+    JMP fin
+
+    pos:
+    INVOKE wsprintf, addr buffer, addr msg_pos_format, CL
+
+    fin:
+ENDM
+
+getExpression MACRO i, buff
+    printNum a[i], buff_a
+    printNum b[i], buff_b
+    printNum d[i], buff_d
+
+    calc a[i], b[i], d[i]
+    MOV res, AL
+    printNum AL, buff_res
+    
+    finalCalc res, buff_res_final
+
+    INVOKE wsprintf, buff, addr msg_final,
+        addr buff_b,
+        addr buff_d,
+        addr buff_d,
+        addr buff_a,
+        addr buff_b,
+        addr buff_res,
+        addr buff_res_final
+ENDM
 
 .data
-    aarg    	db    12, 16, -8, 20, 24
-    carg    	db    3, 6, 5, 10, 4
-    darg    	db    5, 11, 1, 9, 10
-    titleMsg  	db    "Lab5", 0
-    text		db	  "Формула для розрахунків:", 13,
-		              "(-2*c - d + 53)/(a/4 - 1)", 13,
-		              "Результати обчислень:", 0
-    template  	db    "%s", 13,
-    				  "1) a = 12, c = 3, d = 5", 13,
-		              "Відповідь: %s", 13,
-		              "2) a = 16, c = 6, d = 11", 13,
-		              "Відповідь: %s", 13,
-		              "3) a = -8, c = 5, d = 1", 13,
-		              "Відповідь: %s", 13,
-		              "4) a = 20, c = 10, d = 9", 13,
-		              "Відповідь: %s", 13,
-		              "5) a = 24, c = 4, d = 10", 13,
-		              "Відповідь: %s", 0
-    templ_pos 	db    "%d", 0
-    templ_neg  	db    "-%d", 0
+    msg_title       DB "Р›Р°Р±РѕСЂР°С‚РѕСЂРЅР° СЂРѕР±РѕС‚Р° 5", 0
+    msg_last_final  DB "Р РµР·СѓР»СЊС‚Р°С‚Рё РѕР±С‡РёСЃР»РµРЅСЊ:", 10,
+        "1. %s", 10,
+        "2. %s", 10,
+        "3. %s", 10,
+        "4. %s", 10,
+        "5. %s", 0
 
-    first    	dw    ?
-    second    	dw    ?
-    third    	db    ?
-    fourth    	db    ?
-    fifth    	db    ?
-    sixth    	db    ?
-    
-    buf1  db  20  dup  (?)  
-    buf2  db  20  dup  (?)  
-    buf3  db  20  dup  (?)  
-    buf4  db  20  dup  (?)  
-    buf5  db  20  dup  (?)  
-    buffer   db   256 dup (?)
+    msg_final              DB "(4 * %s / %s - 1) / (12 * %s + %s - %s) = %s -> %s", 0
+    msg_neg_format         DB "(-%d)", 0
+    msg_pos_format         DB "%d", 0
+    msg_odd_format         DB "* 5 = %d", 0
+    msg_even_format        DB "/ 2 = %d", 0
 
+    buff_last_final        DB 512 DUP (0)
+    buff_final             DB 064 DUP (0)
+    buff_final_2           DB 064 DUP (0)
+    buff_final_3           DB 064 DUP (0)
+    buff_final_4           DB 064 DUP (0)
+    buff_final_5           DB 064 DUP (0)
+    buff_a                 DB 008 DUP (0)
+    buff_b                 DB 008 DUP (0)
+    buff_d                 DB 008 DUP (0)
+    buff_res               DB 008 DUP (0)
+    buff_res_final         DB 016 DUP (0)
+    current_buff_addr      DD 0
+
+    res                    DB 0
+    a                      DB -19, -29, -37, -13, -3
+    b                      DB   4,   6,   9,  10, 20
+    d                      DB   2,   3,   4,   2,  2
 .code
-    plus macro a, b
-      xor ax, ax
-      mov ax, a
-      add ax, b
-    endm
-
-    minus macro a, b
-      ;;a і b - додатні числа, a - b 
-      xor ax, ax
-      mov al, b
-      neg al
-      add al, a
-    endm
-
-    multi macro a, b
-      xor ax, ax
-      mov al, a
-      mov cl, b
-      imul cl
-    endm
-
-    divis macro a, b
-      xor ax, ax
-      mov al, a
-      cbw
-      mov cl, b
-      idiv cl 
-    endm
-
-  save_pos macro buffer
-    invoke wsprintf, addr buffer, addr templ_pos, ax
-  endm
-
-  save_neg macro buffer
-    neg al
-    invoke wsprintf, addr buffer, addr templ_neg, al
-  endm
-
     start:
-    mov edi, 0
-    .WHILE edi != 5
-   
-    ; 1) -2с
-    multi carg[edi], -2
-    mov first, ax
-    
-    ; 2) -d + 53
-    minus 53, darg[edi]
-    mov second, ax
+        MOV EDI, 0
+        MOV current_buff_addr, offset buff_final
 
-  	; 3) -2c - d + 53 
-    plus first, second
-    mov third, al
+        hereWeGoAgain:
+        getExpression EDI, current_buff_addr
 
-    ; 4) a/4
-    divis aarg[edi], 4
-    mov fourth, al
+        ADD current_buff_addr, 64
+        INC EDI
+        CMP EDI, 5
+        JB hereWeGoAgain
 
-  	; 5) a/4 - 1
-    minus fourth, 1
-    mov fifth, al
+        INVOKE wsprintf, addr buff_last_final, addr msg_last_final,
+            addr buff_final,
+            addr buff_final_2,
+            addr buff_final_3,
+            addr buff_final_4,
+            addr buff_final_5
 
-  	; 6) (-2c - d + 53) / (a/4 - 1)
-    divis third, fifth
-    mov sixth, al
-
-	test   sixth, 1   ;Перевірка числа на парність
-	jz     pair       ;парне
-	jnz    odd        ;непарне
-
-	pair:
-	divis sixth, 2
-	jmp lastStep
-	  
-	odd:
-	multi sixth, 5
-
-	lastStep:
-	test ax, 80h
-	jne negative
-	
-	.IF edi == 0
-	save_pos buf1
-  	.ELSEIF edi == 1
-  	save_pos buf2
-	.ELSEIF edi == 2
-  	save_pos buf3
-	.ELSEIF edi == 3
-  	save_pos buf4
-  	.ELSEIF edi == 4
-  	save_pos buf5
-    .ENDIF
-  	jmp continue
-
-  	negative:
-	.IF edi == 0
-	save_neg buf1
-	.ELSEIF edi == 1
-	save_neg buf2
-	.ELSEIF edi == 2
-	save_neg buf3
-    .ELSEIF edi == 3
-  	save_neg buf4
-  	.ELSEIF edi == 4
-  	save_neg buf5
-    .ENDIF
-  
-  	continue:
-    inc edi
-    .ENDW
-    
-    invoke wsprintf, addr buffer, addr template, addr text, addr buf1, addr buf2, addr buf3, addr buf4, addr buf5
-   
-    invoke MessageBox, 0, addr buffer, addr titleMsg, MB_OK
-    invoke ExitProcess, 0
-    
+        INVOKE MessageBox, 0, addr buff_last_final, addr msg_title, MB_OK
+        INVOKE ExitProcess, 0
     END start
